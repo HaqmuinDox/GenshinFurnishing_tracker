@@ -109,7 +109,8 @@ class GenshinFurnishingManager:
             ''', (furn_id,))
 
             row = cursor.fetchone()
-            if not row: continue
+            if not row:
+                continue
 
             ingredients = [(row[0], row[1]), (row[2], row[3]), (row[4], row[5])]
 
@@ -150,10 +151,10 @@ class GenshinFurnishingManager:
         i = start_pos
         while i < len(text):
             if text.startswith('{{', i):
-                depth += 1;
+                depth += 1
                 i += 2
             elif text.startswith('}}', i):
-                depth -= 1;
+                depth -= 1
                 i += 2
                 if depth == 0: return text[start_pos:i]
             else:
@@ -244,7 +245,7 @@ class GenshinFurnishingManager:
                     for part in parts:
                         if '=' not in part: continue
                         k, v = part.split('=', 1)
-                        k = k.strip();
+                        k = k.strip()
                         v = v.strip()
                         if k.lower() == 'type': recipe_type = v; continue
                         if k.lower() in ignored_keys_rec: continue
@@ -281,7 +282,7 @@ class GenshinFurnishingManager:
 
 
 # --- FRONTEND (GUI) ---
-
+#just testing the commit
 class App:
     def __init__(self, root):
         self.root = root
